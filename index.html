@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Robot VJ</title>
+    <style>button{display: block;}</style>
+  </head>
+
+  <body>
+    <h2>Redirecting to another URL ..</h2>
+    <iframe 
+      id=MainFrame 
+      style="position:fixed; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;" 
+      allow="autoplay; fullscreen; camera; microphone">
+    </iframe>
+      
+    <script type="text/javascript">
+      function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      }
+ 
+      console.log('init load');
+
+      // Global Vars
+      var killSwitch = false;
+
+      var arrayOfTerms = [
+        'snow',
+        'winter',
+        'ice',
+        'penguins',
+        'santa%20claus',
+        'reindeer',
+        'snl%20Christmas',
+        'snowflake',
+        'elf',
+        'rudolph',
+        'candy%20cane',
+        'snowman',
+        'gingerbread',
+      ];
+      
+      var i = 0;
+      var url = "https://robotvj.com/?#/" + arrayOfTerms[i];
+
+      document.getElementById("MainFrame").src = url;
+
+      async function run() {
+        while (killSwitch === false) {
+          console.log('we are in the while');
+          console.log('i = ' + i);
+
+          if (i == arrayOfTerms.length - 1) {
+            i = 0;
+          } else {
+              i++;
+          }
+
+          var url = "https://robotvj.com/#/" + arrayOfTerms[i];
+          document.getElementById("MainFrame").src=url;
+
+          await sleep(300000 * 2);
+          // await sleep(3000);
+              //var Promise = new Promise((resolve, reject) =>  {
+
+              //setTimeout(function() {
+              //resolve(true);
+              // }, 10);
+              // });
+          }
+      }
+
+      run();
+      </script>
+  </body>
+</html>
